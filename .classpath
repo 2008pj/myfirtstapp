@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="lib/jfreechart/hamcrest-core-1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jfreechart/jcommon-1.0.23.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jfreechart/jfreechart-1.0.19-experimental.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jfreechart/jfreechart-1.0.19-swt.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jfreechart/jfreechart-1.0.19.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jfreechart/jfreesvg-2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jfreechart/orsoncharts-1.4-eval-nofx.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jfreechart/orsonpdf-1.6-eval.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jfreechart/servlet.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jfreechart/swtgraphics2d.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene/IKAnalyzer2012_V5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene/lucene-analyzers-common-5.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene/lucene-analyzers-smartcn-5.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene/lucene-core-5.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene/lucene-highlighter-5.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene/lucene-memory-5.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene/lucene-queries-5.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene/lucene-queryparser-5.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/pdf/itextpdf-5.5.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/poi/poi-3.13-20150929.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/poi/poi-excelant-3.13-20150929.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/poi/poi-ooxml-3.13-20150929.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/poi/poi-ooxml-schemas-3.13-20150929.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/poi/poi-scratchpad-3.13-20150929.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/poi/xmlbeans-2.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/tika-app-1.11.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

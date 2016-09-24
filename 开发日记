@@ -1,0 +1,71 @@
+1、12.12，周六（全天公司加班）
+
+	1）问题：当文档存在目录的情况下，索引过程生成的term与搜索过程生成的term不一致，主要体现在
+		1、索引时：目录后面跟的页面会与下一条目录标题连接，构成一条term
+		2、搜索时：目录后面跟的页码单独成为一条term
+		(没有解决)
+		
+	2）搜索时报 java.lang.StringIndexOutOfBoundsException: String index out of range 错误。
+		高亮模块fastVectorHighlighter.getBestFragments()分片时发生。
+		
+		原因，被分析的文档最开始携带有\r或\t或\n等特殊字符。
+		分析器默认在在文档开头遇到这几个特殊字符时候，将tokenStart进行了增加，进而后续所有偏移量全部加1，导致tokenEnd比实际文档长度大。
+		在高亮模块根据字符便宜量进行截取的时候，string.substring(beginIndex, endIndex)报错。
+		
+		解决办法：在分析器对文档开头进行分析时，遇到\r\t\n特殊字符，不对tokenStart进行加1.如下：
+		else if (atBegin && Utility.SPACES.indexOf(ch) != -1) {
+				//tokenStart++;
+				tokenEnd++;
+				ci = input.read();
+				ch = (char) ci;
+			} 
+		
+	3）注意几点：
+		索引文件时，通过temp=tika.parseToString(file);方式读取，而不是采用StringBuffer inputstream等方式读取。
+		搜索文件时，对读取到的文件进行特殊字符处理Query query = parser.parse(QueryParser.escape(sourceFileText));
+		自定义的Analyzer利用IK分词器对每个term进行了去除中文停用词处理。见MyTokenizer.java代码
+
+2、12.14，周一
+		搜索时高亮模块fastVectorHighlighter.getBestFragments()分片发生异常.
+		解决：MyToken.java
+		String str=stopFileter(buffer.toString()); //正确位置
+		if (str.length() == 0)
+			return false;
+		else {
+				String str=stopFileter(buffer.toString()); //错误位置
+				termAtt.setEmpty().append(str);
+				offsetAtt.setOffset(correctOffset(tokenStart),
+						correctOffset(tokenEnd));
+				typeAtt.setType("sentence");
+			return true;
+		}
+		
+3、12.15，周二,公司加班
+		修改MyToken.java处理逻辑，解决了大部分核心分词功能
+		
+4、16年2月23日，与电力公司沟通，确定新的需求:
+	1、库文件显示所有抄袭内容
+	2、将批量检查完成之后的批量入库改为检查通过自动入库
+	3、报告内容包含：出处、分值
+	4、支持WPS
+	
+5、更新  支持WPS文件
+  
+  Tool.java 中修改：
+  if (fileType.endsWith(".doc")||fileType.endsWith(".wps")) { // 将WPS文件与DOC文件做相同处理。
+			try {
+				// json = docFileType(filePath,CopiedSententsList);
+				map = docFileType(filePath, CopiedSententsList);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+   增加单文件选择框中WPS的支持。
+  
+  
+  
+6、增加多文件对比结果中根据重复率排序
+	
+	MultiFileCompare.java 
+	TableColumn tc3增加点击排序事件
+	
